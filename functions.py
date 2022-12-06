@@ -1,4 +1,5 @@
 import re
+import colorama
 
 # Removing blank spaces from text
 def striping(text):
@@ -32,3 +33,11 @@ def find_link(text):
     except:
         link = link[link.find('http'):link.find('.png') + 4]
     return link
+
+# Progress bar render
+def progress_bar(progress, total, color=colorama.Fore.YELLOW):
+    percent = 100 * (progress / float(total))
+    bar = "█" * int(percent) + "-" * (100 - int(percent))
+    print(color+f"\r|{bar}| {percent:.2f}%", end="\r")
+    if progress == total:
+        print(colorama.Fore.GREEN + f"\r|{bar}| {percent:.2f}%", end="\r")
